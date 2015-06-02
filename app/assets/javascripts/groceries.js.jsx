@@ -22,9 +22,7 @@ var ShelfItems = React.createClass({
     return (
       <div className="shelfDisplay">
       	<h1>The Shelf</h1>
-            <ul>
-                <ItemList data={this.state.data} />
-            </ul>
+            <ItemList data={this.state.data} />
       </div>
     );
   }
@@ -38,9 +36,9 @@ var ItemList = React.createClass({
         );
     });
     return (
-        <div className="itemList">
+        <ul className="itemList">
           {itemNodes}
-        </div>
+        </ul>
       );
   }
 });
