@@ -36,9 +36,9 @@ var ItemList = React.createClass({
         );
     });
     return (
-        <ul className="itemList">
+        <div className="itemList">
           {itemNodes}
-        </ul>
+        </div>
       );
   }
 });
@@ -46,10 +46,10 @@ var ItemList = React.createClass({
 var Item = React.createClass({
 	render: function() {
 		return (
-			<li className="item">
+			<div className="item">
 				<span className="itemName">{this.props.itemName}</span>
 				<span className="itemPrice">${this.props.itemPrice}</span>
-			</li>
+			</div>
 		)
 	}
 })

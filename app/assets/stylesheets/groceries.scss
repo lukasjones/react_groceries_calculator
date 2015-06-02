@@ -5,3 +5,22 @@
 .shelfDisplay {
   border: 1px solid black;
 }
+
+.itemList {
+  display: table;
+}
+
+.item {
+  display: table-row;
+}
+
+.itemPrice {
+  display: table-cell;
+  padding-left: 10px;
+  color: blue;
+}
+
+.itemName {
+  display: table-cell;
+  padding-left: 10px;
+}
