@@ -4,16 +4,16 @@ var ShelfItems = React.createClass({
 			url: "/groceries/shelf",
 			dataType: 'json',
 			type: 'get',
-			success: function(items)	{
-				this.setState({items: items});
+			success: function(data)	{
+				this.setState({data: data});
 			}.bind(this),
-			error: function(items){
+			error: function(data){
 				console.log('didn\'t work');
 			}
 		});
 	},
 	getInitialState: function(){
-		return {items: []};
+		return {data: []};
 	},
 	componentDidMount: function(){
 		this.loadShelf();
@@ -22,12 +22,26 @@ var ShelfItems = React.createClass({
     return (
       <div className="shelfDisplay">
       	<h1>The Shelf</h1>
-      	<ul>
-	        <Item itemName="Pasta" itemPrice="22.95" />
-	        <Item itemName="Pasta" itemPrice="22.95" />
-        </ul>
+            <ul>
+                <ItemList data={this.state.data} />
+            </ul>
       </div>
     );
+  }
+});
+
+var ItemList = React.createClass({
+  render: function(){
+    var itemNodes = this.props.data.map(function (item){
+      return (
+          <Item itemName={item.name} itemPrice={item.price}/>
+        );
+    });
+    return (
+        <div className="itemList">
+          {itemNodes}
+        </div>
+      );
   }
 });
 
@@ -36,8 +50,8 @@ var Item = React.createClass({
 		return (
 			<li className="item">
 				<span className="itemName">{this.props.itemName}</span>
-				<span className="itemPrice">{this.props.itemPrice}</span>
-			</li>	
+				<span className="itemPrice">${this.props.itemPrice}</span>
+			</li>
 		)
 	}
 })
