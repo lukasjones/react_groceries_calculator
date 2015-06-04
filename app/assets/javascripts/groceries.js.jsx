@@ -12,9 +12,6 @@ var ShelfItems = React.createClass({
 			}
 		});
 	},
-	addTotal: function(price) {
-		this.setState({ total: this.state.total + price })
-	},
 	getInitialState: function(){
 		return {data: [], total: 0};
 	},
@@ -25,13 +22,8 @@ var ShelfItems = React.createClass({
     return (
       <div className="shelfDisplay">
       	<h1>The Shelf</h1>
-            <ItemList data={this.state.data} self={this} />
-            <p id="total">
-              Total 
-              <b>
-                ${this.state.total.toFixed(2)}
-              </b>
-            </p>
+            <ItemList data={this.state.data} storeSelf={this.props.storeSelf} />
+      
       </div>
     );
   }
@@ -39,10 +31,10 @@ var ShelfItems = React.createClass({
 
 var ItemList = React.createClass({
   render: function(){
-  	var shelf = this.props.self;
+  	var storeSelf = this.props.storeSelf;
     var itemNodes = this.props.data.map(function (item){
       return (
-          <Item itemName={item.name} itemPrice={item.price} active={item.active} addTotal={shelf.addTotal}/>
+          <Item itemName={item.name} itemPrice={item.price} active={item.active} calculateTotal={storeSelf.checkout}/>
         );
     });
     return (
@@ -57,20 +49,20 @@ var Item = React.createClass({
 	getInitialState: function(){
 		return {active: false};
 	},	
-	clickHandler: function() {
-		var active = !this.state.active;
-
-		this.setState({ active: active });
-
-		console.log(this.props.itemPrice);
-
-		this.props.addTotal( active ? this.props.itemPrice : -this.props.itemPrice );
+	addClick: function() {
+		this.props.calculateTotal(this.props.itemPrice);
+		this.props.addToBasket();
+	},
+	subtractClick: function(){
+		this.props.calculateTotal(-this.props.itemPrice);
 	},
 	render: function() {
 		return (
-			<div className="item" onClick={this.clickHandler}>
+			<div className="item">
+				<button onClick={this.addClick}>Add</button>
 				<span className="itemName">{this.props.itemName}</span>
 				<span className="itemPrice">${this.props.itemPrice}</span>
+				<button onClick={this.subtractClick}>Subtract</button>
 			</div>
 		)
 	}
