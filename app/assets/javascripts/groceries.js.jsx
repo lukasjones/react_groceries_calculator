@@ -12,8 +12,11 @@ var ShelfItems = React.createClass({
 			}
 		});
 	},
+	addTotal: function(price) {
+		this.setState({ total: this.state.total + price })
+	},
 	getInitialState: function(){
-		return {data: []};
+		return {data: [], total: 0};
 	},
 	componentDidMount: function(){
 		this.loadShelf();
@@ -22,7 +25,13 @@ var ShelfItems = React.createClass({
     return (
       <div className="shelfDisplay">
       	<h1>The Shelf</h1>
-            <ItemList data={this.state.data} />
+            <ItemList data={this.state.data} self={this} />
+            <p id="total">
+              Total 
+              <b>
+                ${this.state.total.toFixed(2)}
+              </b>
+            </p>
       </div>
     );
   }
@@ -30,9 +39,10 @@ var ShelfItems = React.createClass({
 
 var ItemList = React.createClass({
   render: function(){
+  	var shelf = this.props.self;
     var itemNodes = this.props.data.map(function (item){
       return (
-          <Item itemName={item.name} itemPrice={item.price}/>
+          <Item itemName={item.name} itemPrice={item.price} active={item.active} addTotal={shelf.addTotal}/>
         );
     });
     return (
@@ -44,9 +54,21 @@ var ItemList = React.createClass({
 });
 
 var Item = React.createClass({
+	getInitialState: function(){
+		return {active: false};
+	},	
+	clickHandler: function() {
+		var active = !this.state.active;
+
+		this.setState({ active: active });
+
+		console.log(this.props.itemPrice);
+
+		this.props.addTotal( active ? this.props.itemPrice : -this.props.itemPrice );
+	},
 	render: function() {
 		return (
-			<div className="item">
+			<div className="item" onClick={this.clickHandler}>
 				<span className="itemName">{this.props.itemName}</span>
 				<span className="itemPrice">${this.props.itemPrice}</span>
 			</div>
