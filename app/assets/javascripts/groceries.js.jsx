@@ -19,10 +19,10 @@ var ShelfItems = React.createClass({
 		this.loadShelf();
 	},
   render: function() {
-		var storeSelf = this.props.storeSelf;
+	var storeSelf = this.props.storeSelf;
   	var itemNodes = this.state.data.map(function(item){
   		return (
-  			<Item itemName={item.name} itemPrice={item.price} active={item.active} calculateTotal={storeSelf.checkout} addToBasket={storeSelf.addToBasket} removeFromBasket={storeSelf.removeFromBasket}/>
+  			<Item itemName={item.name} itemPrice={item.price} active={item.active} basketTotal={storeSelf.state.total} calculateTotal={storeSelf.checkout} addToBasket={storeSelf.addToBasket} removeFromBasket={storeSelf.removeFromBasket}/>
   		)
   	})
     return (
@@ -39,7 +39,7 @@ var ShelfItems = React.createClass({
 var Item = React.createClass({
 	getInitialState: function(){
 		return {active: false};
-	},	
+	},
 	addClick: function() {
 		var item = {itemName: this.props.itemName};
 		this.props.calculateTotal(this.props.itemPrice);
@@ -47,8 +47,10 @@ var Item = React.createClass({
 	},
 	subtractClick: function(){
 		var item = {itemName: this.props.itemName};
-		this.props.calculateTotal(-this.props.itemPrice);
-		this.props.removeFromBasket(item);
+            if (this.props.basketTotal > 0) {
+                  this.props.calculateTotal(-this.props.itemPrice);
+      		this.props.removeFromBasket(item);
+            }
 	},
 	render: function() {
 		return (
