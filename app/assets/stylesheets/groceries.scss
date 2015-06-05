@@ -21,8 +21,37 @@
 }
 
 .itemName {
+  position: relative;
   display: table-cell;
   padding-left: 10px;
+  font-size: 1.5em;
+  padding: 10px;
+}
+
+.shelf-add {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  background: transparent;
+
+}
+
+.shelf-delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  background: transparent;
+
+}
+
+.itemPrice {
+  font-size: 1.5em;
 }
 
 .basketItemName {
