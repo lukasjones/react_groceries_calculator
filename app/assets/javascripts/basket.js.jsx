@@ -16,12 +16,13 @@ var Basket = React.createClass({
 		var basket = this.countItems();
 		var basketItems = [];
 		for (var item in basket) {
-			basketItems.push(<BasketItem itemName={item} />)
+			basketItems.push(<BasketItem itemName={item} quantity={basket[item]} />)
 		}
 		console.log(basketItems);
 		return (
 			<div className="basket">
 			<h1>Your Basket</h1>
+
 				{basketItems}
 				<p>Total: ${this.props.total.toFixed(2)}</p>
 			</div>
@@ -35,6 +36,7 @@ var BasketItem = React.createClass({
 		return(
 			<div className="item">
 				<span className="itemName">{this.props.itemName}</span>
+				<span className="quantity">{this.props.quantity}</span>
 			</div>
 		);
 	}
