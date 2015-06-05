@@ -1,13 +1,24 @@
 var Basket = React.createClass({
 	getInitialState: function(){
-		return {data: [], total: 0};
+		return {basket: {}, total: 0};
+	},
+	countItems: function(){
+		basket = {};
+		this.props.items.map(function(item){
+			if (!basket[item.itemName])
+				basket[item.itemName] = 1;
+			else
+				basket[item.itemName] += 1;
+		});
+		return basket;
 	},
 	render: function(){
-		var basketItems = this.props.items.map(function(item){
-			return (
-					<BasketItem itemName={item.name} />
-				);
-		});
+		var basket = this.countItems();
+		var basketItems = [];
+		for (var item in basket) {
+			basketItems.push(<BasketItem itemName={item} />)
+		}
+		console.log(basketItems);
 		return (
 			<div className="basket">
 			<h1>Your Basket</h1>
@@ -25,6 +36,6 @@ var BasketItem = React.createClass({
 			<div className="item">
 				<span className="itemName">{this.props.itemName}</span>
 			</div>
-			)
+		);
 	}
-})
+});
