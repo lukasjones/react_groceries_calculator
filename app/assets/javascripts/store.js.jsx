@@ -7,17 +7,15 @@ var Store = React.createClass({
 	},
 	addToBasket: function(item){
 		this.state.basketItems.push(item);
-		// console.log(this.state.basketItems);
 	},
 	removeFromBasket: function(item){
 		indexToRemove = this.state.basketItems.map(function(item) {
 			return item.itemName; }).indexOf(item.itemName);
 		if (indexToRemove >= 0)
 			this.state.basketItems.splice(indexToRemove, 1);
-
-		console.log(item);
-		console.log(this.state.basketItems);
-		console.log(indexToRemove)
+		// console.log(item);
+		// console.log(this.state.basketItems);
+		// console.log(indexToRemove)
 	},
 	render: function(){
 		var self = this;

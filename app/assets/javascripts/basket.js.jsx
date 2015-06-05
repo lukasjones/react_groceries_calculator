@@ -18,7 +18,7 @@ var Basket = React.createClass({
 		for (var item in basket) {
 			basketItems.push(<BasketItem itemName={item} quantity={basket[item]} />)
 		}
-		console.log(basketItems);
+		// console.log(basketItems);
 		return (
 			<div className="basket">
 			<h1>Your Basket</h1>
