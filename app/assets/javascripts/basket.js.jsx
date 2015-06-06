@@ -35,7 +35,7 @@ var BasketItem = React.createClass({
 	render: function(){
 		return(
 			<div className="item">
-				<span className="itemName">{this.props.itemName}</span>
+				<span className="basketItemName">{this.props.itemName}</span>
 				<span className="quantity">{this.props.quantity}</span>
 			</div>
 		);

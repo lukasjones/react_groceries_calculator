@@ -7,11 +7,18 @@
 }
 
 .itemList {
-  display: table;
+  float: left;
+  padding: 20px;
+}
+
+.basket {
+  float: left;
+  padding: 20px;
 }
 
 .item {
   display: table-row;
+  height: 50px;
 }
 
 .itemPrice {
@@ -21,6 +28,54 @@
 }
 
 .itemName {
+  position: relative;
   display: table-cell;
+  width: 300px;
+  height: 40px;
   padding-left: 10px;
+  font-size: 1.5em;
+  padding: 10px;
+}
+
+.shelf-add {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  background: transparent;
+
+}
+
+.shelf-add img, .shelf-delete img {
+  display: none;
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+}
+
+.shelf-delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  background: transparent;
+
+}
+
+.itemPrice {
+  font-size: 1.5em;
+}
+
+.basketItemName {
+	display: table-cell;
+	width: 200px;
+	padding-left: 10px;	
 }
