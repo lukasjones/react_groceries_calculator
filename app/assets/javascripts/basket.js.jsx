@@ -24,7 +24,7 @@ var Basket = React.createClass({
 			<h1>Your Basket</h1>
 
 				{basketItems}
-				<p>Total: ${this.props.total.toFixed(2)}</p>
+				<p>Total: ${Math.abs(this.props.total).toFixed(2)}</p>
 			</div>
 		);
 	}
