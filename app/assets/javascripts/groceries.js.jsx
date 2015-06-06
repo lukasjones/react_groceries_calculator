@@ -57,12 +57,16 @@ var Item = React.createClass({
 			<div className="item">
 				<span className="itemName">
 					{this.props.itemName}
-					<div className="shelf-add" onClick={this.addClick}></div>
-					<div className="shelf-delete" onClick={this.subtractClick}></div>
+					<div className="shelf-add" onClick={this.addClick}>
+						<img src="/assets/plus.png" />
+					</div>
+					<div className="shelf-delete" onClick={this.subtractClick}>
+						<img src="/assets/minus.png" />
+					</div>
 				</span>
-				<span className="itemPrice">${this.props.itemPrice}</span>
+				<span className="itemPrice">${this.props.itemPrice.toFixed(2)}</span>
 			</div>
-		)
+		);
 	}
 })
 
